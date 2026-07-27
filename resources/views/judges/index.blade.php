@@ -7,10 +7,12 @@
             ⚖️ Judges Management
         </h2>
 
-        <a href="{{ route('judges.create') }}"
-           class="btn btn-success">
-            ➕ Add Judge
-        </a>
+       @if(auth()->user()->role == 'tabulator')
+<a href="{{ route('judges.create') }}"
+   class="btn btn-success">
+    Add Judge
+</a>
+@endif
     </div>
 
     <div class="card shadow border-0">
@@ -51,26 +53,26 @@
 
                         <td>
 
-                            <a href="{{ route('judges.edit', $judge->id) }}"
-                               class="btn btn-warning btn-sm">
-                                ✏️ Edit
-                            </a>
+                          @if(auth()->user()->role == 'tabulator')
 
-                            <form action="{{ route('judges.destroy', $judge->id) }}"
-                                  method="POST"
-                                  style="display:inline;">
+<a href="{{ route('judges.edit', $judge->id) }}"
+   class="btn btn-warning">
+     <i class="bi bi-pencil-square"></i>
+    Edit
+</a>
 
-                                @csrf
-                                @method('DELETE')
+<form action="{{ route('judges.destroy', $judge->id) }}"
+      method="POST"
+      style="display:inline;">
+    @csrf
+    @method('DELETE')
 
-                                <button type="submit"
-                                        class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Delete this judge?')">
-                                    🗑️ Delete
-                                </button>
+    <button class="btn btn-danger">
+        Delete
+    </button>
+</form>
 
-                            </form>
-
+@endif
                         </td>
 
                     </tr>

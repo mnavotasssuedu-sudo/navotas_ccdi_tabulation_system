@@ -9,10 +9,12 @@
                         👥 Contestants
                     </h1>
 
+                    @if(auth()->user()->role == 'tabulator')
                     <a href="{{ route('contestants.create') }}"
                         class="bg-blue-600 text-white px-4 py-2 rounded-lg">
                         + Add Contestant
                     </a>
+                    @endif
                 </div>
 
                 <table class="min-w-full border">
@@ -48,27 +50,32 @@
 
                                                 <td class="border p-3">
 
-    <a href="{{ route('contestants.edit', $contestant->id) }}"
-       class="bg-yellow-500 text-white px-3 py-1 rounded">
-        ✏️ Edit
-    </a>
+                            @if(auth()->user()->role == 'tabulator')
+                            <a href="{{ route('contestants.edit', $contestant->id) }}"
+                               class="bg-yellow-500 text-white px-3 py-1 rounded">
+                               ✏️ Edit
+                                 </a>
+                            @endif
+                            
+                            @if(auth()->user()->role == 'tabulator')
+                              <form action="{{ route('contestants.destroy', $contestant->id) }}"
+                               method="POST"
+                          style="display:inline;">
 
-    <form action="{{ route('contestants.destroy', $contestant->id) }}"
-          method="POST"
-          style="display:inline;">
+                             @csrf
+                              @method('DELETE')
 
-        @csrf
-        @method('DELETE')
+                            <button type="submit"
+                          class="bg-red-600 text-white px-3 py-1 rounded"
+                          onclick="return confirm('Delete this contestant?')">
+                            🗑️ Delete
+                             </button>
 
-        <button type="submit"
-                class="bg-red-600 text-white px-3 py-1 rounded"
-                onclick="return confirm('Delete this contestant?')">
-            🗑️ Delete
-        </button>
+                             </form>
 
-    </form>
-
-</td>
+                             @endif
+                             
+                            </td>
                             </tr>
                         @empty
                             <tr>

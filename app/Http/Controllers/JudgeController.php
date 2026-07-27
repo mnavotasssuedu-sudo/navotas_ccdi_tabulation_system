@@ -22,6 +22,9 @@ class JudgeController extends Controller
      */
     public function create()
 {
+    if(auth()->user()->role != 'tabulator'){
+    abort(403, 'Access Denied');
+}
     return view('judges.create');
 }
 
@@ -30,6 +33,9 @@ class JudgeController extends Controller
      */
  public function store(Request $request)
 {
+    if(auth()->user()->role != 'tabulator'){
+    abort(403, 'Access Denied');
+}
     Judge::create([
         'contest_id' => 1,
         'judge_name' => $request->judge_name,
@@ -52,6 +58,9 @@ class JudgeController extends Controller
      */
    public function edit(Judge $judge)
 {
+    if(auth()->user()->role != 'tabulator'){
+    abort(403, 'Access Denied');
+}
     return view('judges.edit', compact('judge'));
 }
     /**
@@ -59,6 +68,9 @@ class JudgeController extends Controller
      */
   public function update(Request $request, Judge $judge)
 {
+    if(auth()->user()->role != 'tabulator'){
+    abort(403, 'Access Denied');
+}
     $judge->update([
         'judge_name' => $request->judge_name,
         'position' => $request->position,
@@ -72,6 +84,9 @@ class JudgeController extends Controller
      */
   public function destroy(Judge $judge)
 {
+    if(auth()->user()->role != 'tabulator'){
+    abort(403, 'Access Denied');
+}
     $judge->delete();
 
     return redirect()

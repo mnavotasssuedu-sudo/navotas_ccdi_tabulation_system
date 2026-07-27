@@ -6,12 +6,14 @@
            <h1 class="fw-bold text-danger">
     🎯 Exposure Management
 </h1>
-
+            
+            @if(auth()->user()->role == 'tabulator')
             <a href="{{ route('exposures.create') }}"
                class="btn btn-success">
                 <i class="bi bi-plus-circle"></i>
                 Add Exposure
             </a>
+            @endif
         </div>
 
         <div class="card shadow border-0">
@@ -54,41 +56,44 @@
                                 <td>
                                     @if($exposure->is_final)
                                      <span class="badge bg-success">
-    🏆 Final Round
-</span>
+                                🏆 Final Round
+                                </span>
                                     @else
                                        <span class="badge bg-secondary">
-    Regular Round
-</span>
+                                  Regular Round
+                                    </span>
                                     @endif
                                 </td>
 
                                 <td>
-
+                                        @if(auth()->user()->role == 'tabulator')
                                     <a href="{{ route('exposures.edit', $exposure->id) }}"
                                        class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil-square"></i>
                                         Edit
                                     </a>
+                                    @endif
 
+                                    @if(auth()->user()->role == 'tabulator')
                                    <form action="{{ route('exposures.destroy', $exposure->id) }}"
-      method="POST"
-      class="d-inline">
+                              method="POST"
+                                 class="d-inline">
 
-    @csrf
-    @method('DELETE')
+                                 @csrf
+                         @method('DELETE')
 
-    <button
-        type="submit"
-        class="btn btn-danger btn-sm"
-        onclick="return confirm('Are you sure you want to delete this exposure?')">
+                          <button
+                          type="submit"
+                       class="btn btn-danger btn-sm"
+                      onclick="return confirm('Are you sure you want to delete this exposure?')">
 
-        <i class="bi bi-trash"></i>
-        Delete
+                 <i class="bi bi-trash"></i>
+                     Delete
 
-    </button>
+                     </button>
 
-</form>
+                        </form>
+                                 @endif
 
                                 </td>
                             </tr>

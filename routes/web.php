@@ -30,7 +30,11 @@ Route::resource('contests', ContestController::class);
 Route::resource('contestants', ContestantController::class);
 Route::resource('exposures', ExposureController::class);
 Route::resource('judges', JudgeController::class);
+Route::get('/scores/export', [ScoreController::class, 'export'])
+    ->name('scores.export');
+
 Route::resource('scores', ScoreController::class);
+
 Route::resource('criteria', CriteriaController::class);
 Route::get('/results', [ResultController::class, 'index'])
     ->name('results.index');   

@@ -13,21 +13,15 @@
                     @csrf
 
                     <!-- Contest -->
-                    <div class="mb-5">
-                        <label class="block font-semibold mb-2">
-                            Contest
-                        </label>
+                  <div class="mb-5">
+    <label class="block font-semibold mb-2">
+        Contest
+    </label>
 
-                        <select
-                            name="contest_id"
-                            class="w-full border rounded-lg p-3">
-                            @foreach($contests as $contest)
-                                <option value="{{ $contest->id }}">
-                                    {{ $contest->contest_name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
+    <input type="text"
+           class="w-full border rounded-lg p-3"
+           value="Test Contest">
+</div>
 
                     <!-- Contestant Number -->
                     <div class="mb-5">

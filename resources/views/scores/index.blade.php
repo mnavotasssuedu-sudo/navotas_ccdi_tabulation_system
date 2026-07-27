@@ -3,6 +3,11 @@
 
         <h2 class="mb-4">📊 View Scores</h2>
 
+        <a href="{{ route('scores.export') }}"
+   class="btn btn-success mb-3">
+    Export Scores to Excel
+</a>
+
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -10,7 +15,7 @@
 <th>Contestant</th>
 <th>Criteria</th>
 <th>Score</th>
-<th>Exposure</th>
+
                 </tr>
             </thead>
 
@@ -30,7 +35,7 @@
 
 <td>{{ $score->score }}</td>
 
-                        <td>{{ $score->exposure->exposure_name ?? 'N/A' }}</td>
+    
                     </tr>
                 @empty
                     <tr>

@@ -29,11 +29,12 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6">
 
+                  @if(auth()->user()->role == 'tabulator')
                     <a href="{{ route('criteria.create') }}" 
                        class="btn btn-success mb-3">
                         + Add Criteria
                     </a>
-
+                             @endif
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -54,12 +55,14 @@
 
     <td>
 
+      @if(auth()->user()->role == 'tabulator')
         <a href="{{ route('criteria.edit', $item->id) }}"
            class="btn btn-warning btn-sm">
             Edit
         </a>
+ @endif
 
-
+          @if(auth()->user()->role == 'tabulator')
         <form action="{{ route('criteria.destroy', $item->id) }}"
               method="POST"
               style="display:inline;">
@@ -74,7 +77,7 @@
             </button>
 
         </form>
-
+ @endif
     </td>
 </tr>
                             @endforeach

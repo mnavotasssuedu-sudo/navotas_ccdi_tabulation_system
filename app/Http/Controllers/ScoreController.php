@@ -7,10 +7,16 @@ use App\Models\Judge;
 use App\Models\Contestant;
 use App\Models\Criteria;
 use Illuminate\Http\Request;
+use App\Exports\ScoresExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class ScoreController extends Controller
 {
+    public function export()
+{
+    return Excel::download(new ScoresExport, 'scores.xlsx');
+}
     /**
      * Display a listing of the resource.
      */
